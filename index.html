@@ -5,22 +5,41 @@
     <title>Color Game</title>
     <link rel="stylesheet" href="./index.css" />
   </head>
-  <body onload="newGame()">
+  <body onload = "newGame()">
     <div id="header">
       <h2>The Great</h2>
       <h1 id="header-clue">rgb(xxx,xxx,xxx)</h1>
       <h2>Guessing Game</h2>
     </div>
-    <div id="container">
+    <div id = "container">
+      <div id = "sub1">
       <div class="tile" id="1"></div>
       <div class="tile" id="2"></div>
+      <div class="tile" id="3"></div>
+      </div>
+      <div id = "sub2">
+      <div class="tile" id="4"></div>
+      <div class="tile" id="5"></div>
+      <div class="tile" id="6"></div>
+      </div>
+    </div>
+    <div id = "container2">
+    <div class = "clicking" id = "counter">Turns left = 5</div>
+    <div class = "clicking" id = "button">New Game</div>
     </div>
 
     <script>
       var t1 = document.getElementById("1");
       var t2 = document.getElementById("2");
+      var t3 = document.getElementById("3");
+      var t4 = document.getElementById("4");
+      var t5 = document.getElementById("5");
+      var t6 = document.getElementById("6");
+      var c = document.getElementById("counter");
+      var b = document.getElementById("button");
       var x;
       var correctColor;
+      var p = 5;
 
       function getRandomColor() {
         var letters = "0123456789ABCDEF";
@@ -34,33 +53,138 @@
       function newGame() {
         t1.style.background = getRandomColor();
         t2.style.background = getRandomColor();
+        t3.style.background = getRandomColor();
+        t4.style.background = getRandomColor();
+        t5.style.background = getRandomColor();
+        t6.style.background = getRandomColor();
 
-        x = Math.floor(Math.random() * 2 + 1);
+        x = Math.floor(Math.random() * 6 + 1);
 
-        if (x == 1) correctColor = t1.style.background;
-        else correctColor = t2.style.background;
-        /* console.log(x);
-        console.log(correctColor); */
+        switch (x)
+        {
+          case 1: correctColor = t1.style.background;
+          break;
+          case 2: correctColor = t2.style.background;
+          break;
+          case 3: correctColor = t3.style.background;
+          break;
+          case 4: correctColor = t4.style.background;
+          break;
+          case 5: correctColor = t5.style.background;
+          break;
+          case 6: correctColor = t6.style.background;
+          break;
+        }
+        console.log(x);
+        console.log(correctColor);
 
         document.getElementById("header-clue").innerHTML = correctColor;
       }
 
       t1.addEventListener("click", function () {
+        if (p>0)
+        {
         if (t1.style.background == correctColor) {
           t2.style.background = correctColor;
+          t3.style.background = correctColor;
+          t4.style.background = correctColor;
+          t5.style.background = correctColor;
+          t6.style.background = correctColor;
           document.getElementById("header").style.background = correctColor;
         } else {
-          t1.style.background = "black";
+          t1.style.background = "teal";
+          c.innerHTML = "Turns Left = " + (--p);
         }
+      }
       });
 
       t2.addEventListener("click", function () {
+        if (p>0)
+        {
         if (t2.style.background == correctColor) {
+          t1.style.background = correctColor;
+          t3.style.background = correctColor;
+          t4.style.background = correctColor;
+          t5.style.background = correctColor;
+          t6.style.background = correctColor;
+          document.getElementById("header").style.background = correctColor;
+        } else {
+          t2.style.background = "teal";
+          c.innerHTML = "Turns Left = " + (--p);
+        }
+      }
+      });
+
+      t3.addEventListener("click", function () {
+        if (p>0)
+        {
+        if (t3.style.background == correctColor) {
+          t2.style.background = correctColor;
+          t1.style.background = correctColor;
+          t4.style.background = correctColor;
+          t5.style.background = correctColor;
+          t6.style.background = correctColor;
+          document.getElementById("header").style.background = correctColor;
+        } else {
+          t3.style.background = "teal";
+          c.innerHTML = "Turns Left = " + (--p);
+        }
+      }
+      });
+
+      t4.addEventListener("click", function () {
+        if (p>0)
+        {
+        if (t4.style.background == correctColor) {
+          t2.style.background = correctColor;
+          t3.style.background = correctColor;
+          t1.style.background = correctColor;
+          t5.style.background = correctColor;
+          t6.style.background = correctColor;
+          document.getElementById("header").style.background = correctColor;
+        } else {
+          t4.style.background = "teal";
+          c.innerHTML = "Turns Left = " + (--p);
+        }
+      }
+      });
+
+      t5.addEventListener("click", function () {
+        if (p>0)
+        {
+        if (t5.style.background == correctColor) {
+          t2.style.background = correctColor;
+          t3.style.background = correctColor;
+          t4.style.background = correctColor;
+          t1.style.background = correctColor;
+          t6.style.background = correctColor;
+          document.getElementById("header").style.background = correctColor;
+        } else {
+          t5.style.background = "teal";
+          c.innerHTML = "Turns Left = " + (--p);
+        }
+      }
+      });
+
+      t6.addEventListener("click", function () {
+        if (p>0)
+        {
+        if (t6.style.background == correctColor) {
+          t2.style.background = correctColor;
+          t3.style.background = correctColor;
+          t4.style.background = correctColor;
+          t5.style.background = correctColor;
           t1.style.background = correctColor;
           document.getElementById("header").style.background = correctColor;
         } else {
-          t2.style.background = "black";
+          t6.style.background = "teal";
+          c.innerHTML = "Turns Left = " + (--p);
         }
+      }
+      });
+
+      b.addEventListener("click", function() {
+        window.location.reload();
       });
     </script>
   </body>
